@@ -10,14 +10,14 @@ exports.main = function($scope, $http, $location) {
 exports.answer = function($scope, $http){
 
   $scope.fetch = function (query) {
-    $http.get('/api/basePearls?query=' + query).success(function(data){
+    $http.get('/api/basePearls?query=' + query + '&type=venue').success(function(data){
       $scope.basePearls = data;
     });
   };
 
   $scope.send = function (basePearlId, askId) {
     $http.post('/api/asks/' + askId + '/answers', basePearlId).success(function(data) {
-      alert(data);
+      alert(data.uid);
     });
   };
 };
