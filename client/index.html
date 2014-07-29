@@ -15,12 +15,13 @@
       </form>
 
       <div ng-repeat="basePearl in basePearls | filter:query">
-        <p>{{ basePearl.name }}
-          <form>
+        <form>
+          <p>
+            {{ basePearl.name }}
             <input type="hidden" name="base_pearl_id" value="{{ basePearl.uid }}">
             <button ng-click="send(basePearl.uid, request.uid)">send</button>
+          </p>
           </form>
-        </p>
       </div>
     </div>
   </div>
