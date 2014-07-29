@@ -7,12 +7,23 @@
     <img ng-src="{{ request.user.image.urls.avatar }}">
     <p>{{ request.user.name }} asks: </hp>
     <h2>{{ request.question }}</h2>
-  </div>
 
-  <form>
-    <input type="text" placeholder="search ...">
-    <input type="submit">
-  </form>
+    <div ng-controller="answerController">
+      <form>
+        <input ng-model="query" name="query" type="text" placeholder="search ...">
+        <button ng-click="fetch(query)">search</button>
+      </form>
+
+      <div ng-repeat="basePearl in basePearls | filter:query">
+        <p>{{ basePearl.name }}
+          <form>
+            <input type="hidden" name="base_pearl_id" value="{{ basePearl.uid }}">
+            <button ng-click="send(basePearl.uid, request.uid)">send</button>
+          </form>
+        </p>
+      </div>
+    </div>
+  </div>
 
   <script type="text/javascript" src="/js/app.js"></script>
 

@@ -1,9 +1,23 @@
-exports.main = function($scope, $http) {
+exports.main = function($scope, $http, $location) {
 
-  $http.get('/requests/:requestId').success(function(data){
+  var askId = window.location.pathname.split("/")[2];
+
+  $http.get('/api/asks/' + askId).success(function(data){
     $scope.request = data;
-    console.log($scope.request);
   });
 };
 
-exports.fish = function(){}
+exports.answer = function($scope, $http){
+
+  $scope.fetch = function (query) {
+    $http.get('/api/basePearls?query=' + query).success(function(data){
+      $scope.basePearls = data;
+    });
+  };
+
+  $scope.send = function (basePearlId, askId) {
+    $http.post('/api/asks/' + askId + '/answers', basePearlId).success(function(data) {
+      alert(data);
+    });
+  };
+};

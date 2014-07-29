@@ -25,8 +25,8 @@ app.use(express.static(__dirname + '/client'));
 
 //
 // Routes
-// 
-app.get('/requests/:requestId', function(req, res){
+//
+app.get('/asks/:askId', function(req, res){
   res.set('Content-Type', 'text/HTML');
 
   fs.readFile('./client/index.html', {encoding: 'utf-8'}, function(err, data){
@@ -52,9 +52,9 @@ app.get('/api/basePearls', function(req, res){
   // })
 });
 
-app.get('/api/requests/:requestId', function(req, res){
+app.get('/api/asks/:askId', function(req, res){
   res.set('Content-Type', 'application/json');
-  var url = process.env.PS_HOST + process.env.PS_REQUEST_URL + '/' + req.param('requestId')
+  var url = process.env.PS_HOST + process.env.PS_REQUEST_URL + '/' + req.param('askId')
   request
     .get(url)
     .send(req.query)
@@ -70,9 +70,9 @@ app.get('/api/requests/:requestId', function(req, res){
   // })
 });
 
-app.post('/api/requests/:requestId/answers', function(req, res){
+app.post('/api/asks/:askId/answers', function(req, res){
   res.set('Content-Type', 'application/json');
-  res.send({'uid': req.param('requestId')});
+  res.send({'uid': req.param('askId')});
 });
 
 //
