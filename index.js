@@ -23,10 +23,25 @@ app.use(express.static(__dirname + '/client'));
 // Routes
 // 
 app.get('/basePearls', function(req, res){
-  fs.readFile('./data/basePearls', function(err, data){
-    res.json(data);
+  res.set('Content-Type', 'application/json');
+  fs.readFile('./data/basePearls.json', {encoding: 'utf-8'}, function(err, data){
+    if (err) next(new Error(err));
+    res.send(data);
   })
-})
+});
+
+app.get('/requests/:requestId', function(req, res){
+  res.set('Content-Type', 'application/json');
+  fs.readFile('./data/request.json', {encoding: 'utf-8'}, function(err, data){
+    if (err) next(new Error(err));
+    res.send(data);
+  })
+});
+
+app.post('/requests/:requestId/answers', function(req, res){
+  res.set('Content-Type', 'application/json');
+  res.send({'uid': req.param('requestId')});
+});
 
 // 
 // start app
