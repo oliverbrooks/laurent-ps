@@ -26,7 +26,16 @@ app.use(express.static(__dirname + '/client'));
 // 
 // Routes
 // 
-app.get('/basePearls', function(req, res){
+app.get('/requests/:requestId', function(req, res){
+  res.set('Content-Type', 'text/HTML');
+
+  fs.readFile('./client/index.html', {encoding: 'utf-8'}, function(err, data){
+    if (err) next(new Error(err));
+    res.send(data);
+  })
+});
+
+app.get('/api/basePearls', function(req, res){
   res.set('Content-Type', 'application/json');
   request
     .get(process.env.PS_HOST + process.env.PS_BASE_PEARL_URL)
@@ -43,7 +52,7 @@ app.get('/basePearls', function(req, res){
   // })
 });
 
-app.get('/requests/:requestId', function(req, res){
+app.get('/api/requests/:requestId', function(req, res){
   res.set('Content-Type', 'application/json');
   var url = process.env.PS_HOST + process.env.PS_REQUEST_URL + '/' + req.param('requestId')
   request
@@ -61,7 +70,7 @@ app.get('/requests/:requestId', function(req, res){
   // })
 });
 
-app.post('/requests/:requestId/answers', function(req, res){
+app.post('/api/requests/:requestId/answers', function(req, res){
   res.set('Content-Type', 'application/json');
   res.send({'uid': req.param('requestId')});
 });

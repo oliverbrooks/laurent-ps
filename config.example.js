@@ -1,6 +1,6 @@
 
-PORT = 3000;
-BEARER = '';
-PS_HOST = 'http://pearlsharedev.herokuapp.com';
-PS_REQUEST_URL = '/api/asks';
-PS_BASE_PEARL_URL = '/api/basePearls';
+process.env.PORT = 3000;
+process.env.BEARER = '';
+process.env.PS_HOST = 'http://pearlsharedev.herokuapp.com';
+process.env.PS_REQUEST_URL = '/api/asks';
+process.env.PS_BASE_PEARL_URL = '/api/basePearls';
