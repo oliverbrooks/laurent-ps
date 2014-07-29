@@ -1,10 +1,20 @@
-<html ng-app="ngAppLaurentPs">
+<html ng-app="LaurentsApp">
 <head>
   <title></title>
 </head>
 <body>
+  <div ng-controller="requestController">
+    <img ng-src="{{ request.user.image.urls.avatar }}">
+    <p>{{ request.user.name }} asks: </hp>
+    <h2>{{ request.question }}</h2>
+  </div>
 
-  <h1>Hello</h1>
+  <form>
+    <input type="text" placeholder="search ...">
+    <input type="submit">
+  </form>
+
+  <script type="text/javascript" src="/js/app.js"></script>
 
 </body>
 </html>

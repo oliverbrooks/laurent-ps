@@ -5,17 +5,17 @@ var fs = require('fs');
 var morgan = require('morgan');
 var request = require('superagent');
 
-// 
+//
 // Config
-// 
+//
 if(process.env.NODE_ENV !== 'production') {
   // load in config
   require("./config")
 }
 
-// 
+//
 // Middleware
-// 
+//
 app.use(morgan('combined'));
 
 //provide browserified versions of all the files in a directory
@@ -23,7 +23,7 @@ app.use('/js/app.js', browserify('./client/js/app.js'));
 
 app.use(express.static(__dirname + '/client'));
 
-// 
+//
 // Routes
 // 
 app.get('/requests/:requestId', function(req, res){
@@ -75,9 +75,9 @@ app.post('/api/requests/:requestId/answers', function(req, res){
   res.send({'uid': req.param('requestId')});
 });
 
-// 
+//
 // start app
-// 
+//
 app.listen(process.env.PORT, function(){
   console.log('app started on port ' + process.env.PORT);
 });
