@@ -3,10 +3,10 @@
   <title></title>
 </head>
 <body>
-  <div ng-controller="requestController">
-    <img ng-src="{{ request.user.image.urls.avatar }}">
-    <p>{{ request.user.name }} asks: </hp>
-    <h2>{{ request.question }}</h2>
+  <div ng-controller="askController">
+    <img ng-src="{{ ask.user.image.urls.avatar }}">
+    <p>{{ ask.user.name }} asks: </hp>
+    <h2>{{ ask.question }}</h2>
 
     <div ng-controller="answerController">
       <form>

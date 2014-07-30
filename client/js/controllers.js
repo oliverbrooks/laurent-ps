@@ -1,9 +1,9 @@
-exports.main = function($scope, $http, $location) {
-
+exports.main = function($scope, $http, askService) {
   var askId = window.location.pathname.split("/")[2];
+  var askUrl = '/api/asks/' + askId;
 
-  $http.get('/api/asks/' + askId).success(function(data){
-    $scope.request = data;
+  askService.ask(askUrl).success(function(data) {
+    $scope.ask = data;
   });
 };
 
